@@ -22,11 +22,15 @@ export default class App extends React.Component
     {
       case "loading":
         return (
-          <Loading />
+          <div className="vh-100 d-flex justify-content-center align-items-center">
+            <Loading />
+          </div>
         );
       case "principal":
         return (
-          <Principal />
+          <div className="vh-100 d-flex justify-content-center align-items-center">
+            <Principal />
+          </div>
         );
     }
   }

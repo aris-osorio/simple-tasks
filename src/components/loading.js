@@ -1,12 +1,11 @@
-import React from 'react'
+import React from 'react';
+import {PuffLoader} from 'react-spinners';
 
-
-export default class Loading extends React.Component
-{
-    render()
-    {
-        return (
-           <h1>Loading</h1>
-          );
-    }
-}
+export default function Loading(){
+    return (
+        <div className="d-flex justify-content-center align-items-center position-relative">
+            <p class="text-primary position-absolute" style={{fontSize: 30}} >Loading</p>
+            <PuffLoader color="#2c7eb4" size="250" />          
+        </div>
+    );
+} 
