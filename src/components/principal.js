@@ -1,6 +1,9 @@
 import React from 'react'
 import axios from 'axios'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
+toast.configure();
 export default class Principal extends React.Component
 {
     constructor()
@@ -40,9 +43,15 @@ export default class Principal extends React.Component
                 this.setState( {principal: "simpleTask"}, () => { 
                     console.log(this.state.principal);
                  });
+
+                 toast.success('inicio de sesion correcto : bienvenido')
                 
-            }).catch((error) => console.log(error));
+            }).catch((error) => {
+                console.log(error)
+                toast.error('error datos invalidos')
+                });
     }
+
     dataRegistrer = () =>
     {
         axios.post(`https://academlo-todolist.herokuapp.com/register`, 
