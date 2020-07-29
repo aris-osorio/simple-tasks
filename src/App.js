@@ -3,6 +3,7 @@ import Principal from './components/principal'
 import Loading from './components/loading'
 import './App.css';
 
+
 export default class App extends React.Component 
 {
   constructor()
@@ -28,9 +29,11 @@ export default class App extends React.Component
         );
       case "principal":
         return (
-          <div className="vh-100 d-flex justify-content-center align-items-center">
-            <Principal />
-          </div>
+            <div className="vh-100 bg-principal">
+              <div className="vh-100 d-flex justify-content-center align-items-center position-relative bg-opacity">
+                <Principal />
+              </div>
+            </div>
         );
     }
   }

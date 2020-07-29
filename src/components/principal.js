@@ -1,7 +1,9 @@
 import React from 'react'
+import Presentation from './presentation'
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+
 
 toast.configure();
 export default class Principal extends React.Component
@@ -42,16 +44,15 @@ export default class Principal extends React.Component
 
                 this.setState( {principal: "simpleTask"}, () => { 
                     console.log(this.state.principal);
-                 });
+                });
 
-                 toast.success('inicio de sesion correcto : bienvenido')
-                
+                toast.success('inicio de sesion correcto : bienvenido')
+
             }).catch((error) => {
                 console.log(error)
                 toast.error('error datos invalidos')
                 });
     }
-
     dataRegistrer = () =>
     {
         axios.post(`https://academlo-todolist.herokuapp.com/register`, 
@@ -65,52 +66,81 @@ export default class Principal extends React.Component
             {
                 console.log(res);
                 console.log(res.data);
-            }).catch((error) => console.log(error));
+                
+                this.resetForm();
+                
+                toast.success('Registro correcto')
+
+            }).catch((error) => {
+                console.log(error)
+                toast.error('error al registrar usuario')
+                });
         
             console.log(this.fname.value + "\n" + this.lname.value + "\n" + this.email.value + "\n" + this.pwd.value);
+    }
+    resetForm=()=>
+    {
+        document.getElementById("exampleInputEmail1").value = "";
+        document.getElementById("exampleInputPassword1").value = "";
+        document.getElementById("Inputfname1").value = "";
+        document.getElementById("Inputlname1").value = "";
+        document.getElementById("InputEmail1").value = "";
+        document.getElementById("InputPassword1").value = "";
     }
     render()
     {
         switch(this.state.principal)
         {
             case "login":
-                return(
-                    <div>
-                    <h1>Login</h1> 
-                    <button onClick={this.signUp}>ir a registro</button>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" ref={txt => this.email = txt}></input><br></br>
-                    <label for="pwd">Pasword:</label>
-                    <input type="password" id="pwd" name="pwd" ref={txt => this.pwd = txt}></input><br></br>
-                    <button onClick={this.dataCheck}>iniciar sesion</button>
-                    </div>
-                  );
-            
-            case "signUp":
-                return(
-                    
-                    <div>
-                        <h1>
-                      Sign Up <button onClick={this.login}>ir a Login</button>
-                    </h1>
-                        <label for="fname">First name:</label>
-                        <input type="text"  id="fname" name="fname" ref={txt => this.fname = txt}></input><br></br>
-                        <label for="lname">Last name:</label>
-                        <input type="text" id="lname" name="lname" ref={txt => this.lname = txt}></input><br></br>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" ref={txt => this.email = txt}></input><br></br>
-                        <label for="pwd">Pasword:</label>
-                        <input type="password" id="pwd" name="pwd" ref={txt => this.pwd = txt}></input><br></br>
-                        <button onClick={this.dataRegistrer}>registro</button>
-                  </div>         
+                return(    
+                    <div className="shadow p-3 mb-5 bg-white rounded position-absolute">
+                        <h1>Login</h1>
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Email address</label>
+                            <input type="email" className="form-control" ref={txt => this.email = txt} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="xyz@domain.com"></input>
+                            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="exampleInputPassword1">Password</label>
+                            <input type="password" className="form-control" ref={txt => this.pwd = txt} id="exampleInputPassword1" placeholder="Password"></input>
+                            <small id="singUpHelp" className="form-text text-muted">Not a member?&nbsp;<a href='#' onClick={this.signUp}>Sing Up now</a></small>
+                        </div>
+                        <button className="btn btn-primary" onClick={this.dataCheck}>Login</button>
+                    </div>     
                 );
 
-            case "simpleTask"  :
+            case "signUp":
+                return(    
+                    <div className="shadow p-3 mb-5 bg-white rounded position-absolute">
+                        <h1>Sing Up</h1>
+                        <div className="form-group">
+                            <label htmlFor="Inputfname1">Name</label>
+                            <input className="form-control" ref={txt => this.fname = txt} id="Inputfname1" placeholder="Name"></input>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="Inputlname1">Last Name</label>
+                            <input className="form-control" ref={txt => this.lname = txt} id="Inputlname1" placeholder="Last Name"></input>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="InputEmail1">Email address</label>
+                            <input type="email" className="form-control" ref={txt => this.email = txt} id="InputEmail1" aria-describedby="emailHelp" placeholder="xyz@domain.com"></input>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="InputPassword1">Password</label>
+                            <input type="password" className="form-control" ref={txt => this.pwd = txt} id="InputPassword1" placeholder="Password"></input>
+                            <small id="singUpHelp" className="form-text text-muted">Already have account?&nbsp;<a href='#' onClick={this.login}>Login</a></small>
+                        </div>
+                        <button className="btn btn-primary" onClick={this.dataRegistrer}>Sing up</button>
+                    </div>     
+                );
+
+            case "simpleTask":
                 return(
                     <div>
-                         <h1>welcome to simple simpleTask</h1>
+                        <h1>welcome to simple simpleTask</h1>
                     </div>
-                ); 
+                );    
+                
         }
     }
 }

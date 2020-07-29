@@ -1,0 +1,14 @@
+.bg-principal
+{
+   background-image: url("https://lh3.googleusercontent.com/7MlKf80YR4WGVDI1u9WEg4qbDNAQ-P4MEluy7BS3kdbsWPpcjNym2FWzUtcElXpPjdbMGR6Rp1suRS4FbpGlOjHVfSu0eMqGRVRqvF2mbqZwBhYnzcDgjKaYjJc-8f4O4T8vwlBlIFRYe6zffiIN0VUEiqKFErOSdIr8wW6V1FGsfTDB0__Cl3B6jwqjNktqJbCSv1ha21Iq44cg-Lofs4vzf9mKx71ap47yFck-A0derly5wtyf6NJqZfdNBDjGg0t7pTBsfH6u2vF0mB8qZrQMxVk83EvPYccU772b9fl4SeOcofhlx5XQVI2M5pvMvQQMA6cOrUEi-qIH6zZgZJQseTP20iBRK_M0T5-NznQlwq1WprCcWY3Vdp2-7eAsr1cOfr7xHDEEfhdji3KymD-PQHV3J7wO-l_EURjQ2s1HwbCPZiftGFJbxasL0gEsP2Ny7TPsrGj2P9Oq_SVyHCqxBQgh0GqyjZCtAq7nDTt3bK102KpqKgxUzgQLxJFk1kXq2pPmPmDW3tjQ9qJbLhvNo3WNLpR-2ei6eN7gOC7G1eFD62daxlIPYzcRktLbmiSv54LuEYd3nHEv_SamhQb_yhlK1lj93l1TRlRxqgoLWPSm0AitMz4qsMCTOS0L5REbDBx4TyPDQsrr2llP2vouWSuHxXDL-FLCO1UqNyJmBhhBDtjDLFztQU1_=w1169-h657-no?authuser=0"); 
+   background-size: cover;
+}
+.bg-opacity
+{
+    background: rgba(44,126,180,0.6);
+}
+.txt-loading
+{
+    font-size: xx-large;
+    color:  rgba(44,126,180);
+}
