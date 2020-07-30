@@ -1,8 +1,9 @@
 import React from 'react'
-import Presentation from './presentation'
+import SimpleTask from './simpleTask'
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+
 
 
 toast.configure();
@@ -52,6 +53,8 @@ export default class Principal extends React.Component
                 console.log(error)
                 toast.error('error datos invalidos')
                 });
+
+                console.log(this.email.value + "\n" + this.pwd.value);
     }
     dataRegistrer = () =>
     {
@@ -73,7 +76,7 @@ export default class Principal extends React.Component
 
             }).catch((error) => {
                 console.log(error)
-                toast.error('error al registrar usuario')
+                toast.error(error)
                 });
         
             console.log(this.fname.value + "\n" + this.lname.value + "\n" + this.email.value + "\n" + this.pwd.value);
@@ -136,9 +139,7 @@ export default class Principal extends React.Component
 
             case "simpleTask":
                 return(
-                    <div>
-                        <h1>welcome to simple simpleTask</h1>
-                    </div>
+                    <SimpleTask email = {this.email.value} pwd = {this.pwd.value} />
                 );    
                 
         }
