@@ -12,3 +12,13 @@
     font-size: xx-large;
     color:  rgba(44,126,180);
 }
+.icon-styles:hover
+{
+    fill:  rgba(44,126,180);
+    cursor: pointer;
+}
+.icon-styles:active 
+{
+    background-color: lightblue;
+}
+
