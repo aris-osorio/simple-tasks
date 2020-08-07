@@ -22,7 +22,6 @@ export default class simpleTask extends React.Component
     componentDidMount()
     {
         this.removeClass()
-        this.getUsers()
         this.getTasks()
     }
     editTask(id, content, date)

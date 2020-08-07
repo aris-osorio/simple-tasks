@@ -3,7 +3,6 @@ import Principal from './components/principal'
 import Loading from './components/loading'
 import './App.css';
 
-
 export default function App()
 {
   const [window, setWindows] = useState("Loading");
@@ -41,7 +40,7 @@ export default function App()
   return (
     <div>
       {showWindow}
-    </div>
+    </div>  
   )
    
 }
