@@ -11,7 +11,7 @@ export default function App()
   useEffect(() => 
   {
     const timer = setTimeout(() => {
-      setWindows("Principal")
+      setWindows("Loading")
     }, 2000);
 
     return () => clearTimeout(timer);
