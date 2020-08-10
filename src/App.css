@@ -140,9 +140,12 @@
   box-shadow: 0 0 0 0.05rem rgba(44,126,180);
 }
 /*Sign Up*/
-.container
+.size-email
 {
-    width: 412px;
-    height: 366px;
+    width: 57.5%;;
+}
+.size-pwd
+{
+    width: 40%;;
 }
 
