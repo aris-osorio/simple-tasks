@@ -5,7 +5,7 @@ import SimpleTask from './simpleTask'
 
 export default function Principal()
 {
-    const [component, setComponents] = useState("Login");
+    const [component, setComponents] = useState("SignUp");
     let showComponent;
 
     const changeComponents =(state)=>

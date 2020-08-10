@@ -5,13 +5,14 @@ import './App.css';
 
 export default function App()
 {
+  
   const [window, setWindows] = useState("Loading");
   let showWindow;
 
   useEffect(() => 
   {
     const timer = setTimeout(() => {
-      setWindows("Loading")
+      setWindows("Principal")
     }, 2000);
 
     return () => clearTimeout(timer);
@@ -24,17 +25,17 @@ export default function App()
                     <div className="vh-100 d-flex justify-content-center align-items-center">
                       <Loading />
                     </div>
-                  )
+                 )
   }
   else if(window ==="Principal")
   {
     showWindow = (
                     <div className="vh-100 bg-principal">
-                      <div className="vh-100 d-flex justify-content-center align-items-center position-relative bg-opacity">
+                      <div className="vh-100 d-flex justify-content-center align-items-center bg-opacity">
                         <Principal />
                       </div>
-                    </div>
-                  )
+                    </div>  
+                 )
   }
   
   return (
