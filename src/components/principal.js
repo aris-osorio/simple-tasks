@@ -3,9 +3,9 @@ import Login from './login'
 import SignUp from './signUp'
 import SimpleTask from './simpleTask'
 
-export default function Principal()
+export default function Principal(props)
 {
-    const [component, setComponents] = useState("SignUp");
+    const [component, setComponents] = useState("Login");
     let showComponent;
 
     const changeComponents =(state)=>
@@ -15,7 +15,7 @@ export default function Principal()
 
     if(component==="Login")
     {
-        showComponent = <Login  element = {changeComponents} />
+        showComponent = <Login  element = {changeComponents} windows = {props.windows} />
     }
     else if(component === "SignUp")
     {

@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import Principal from './components/principal'
 import Loading from './components/loading'
+import Principal from './components/principal'
+import SimpleTask from './components/simpleTask'
 import './App.css';
 
 export default function App()
 {
-  
   const [window, setWindows] = useState("Loading");
   let showWindow;
 
@@ -13,11 +13,16 @@ export default function App()
   {
     const timer = setTimeout(() => {
       setWindows("Principal")
-    }, 2000);
+  }, 2000);
 
     return () => clearTimeout(timer);
 
   }, [])
+
+  const changeWindows =(state)=>
+  {
+      setWindows(state)
+  }
 
   if(window ==="Loading")
   {
@@ -32,9 +37,15 @@ export default function App()
     showWindow = (
                     <div className="vh-100 bg-principal">
                       <div className="vh-100 d-flex justify-content-center align-items-center bg-opacity">
-                        <Principal />
+                        <Principal windows = {changeWindows} />
                       </div>
                     </div>  
+                 )
+  }
+  else if(window ==="SimpleTask")
+  {
+    showWindow = (
+                    <SimpleTask windows = {changeWindows}/>
                  )
   }
   
