@@ -5,7 +5,8 @@ import 'react-toastify/dist/ReactToastify.css'
 
 toast.configure();
 
-export default function Login(props) {
+export default function Login(props) 
+{
     let email = ""
     let password = ""
 
