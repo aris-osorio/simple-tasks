@@ -1,5 +1,6 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState} from 'react'
 import DatePicker from 'react-datepicker'
+import PubSub from 'pubsub-js'
 import 'react-toastify/dist/ReactToastify.css'
 import Axios from 'axios'
 import { toast } from 'react-toastify'
@@ -23,7 +24,8 @@ export default function NewTask()
             {
                 console.log(res.data);
                 toast.success('Tarea Agregada con exito')
-                resetContent()      
+                resetContent()
+                PubSub.publish('state', document.getElementById("select-tasks").value)
 
             }).catch((error) => {
                 console.log(error)

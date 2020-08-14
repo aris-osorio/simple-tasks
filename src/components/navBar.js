@@ -1,14 +1,18 @@
 import React from 'react'
+import PubSub from 'pubsub-js'
 
-export default function Navbar()
+export default function Navbar(props)
 {
     return(
             <nav className="navbar navbar-light bg-light">
                 <span className="navbar-brand mb-0 h1">Navbar</span>
-                <form className="form-inline my-2  my-lg-0">
-                    <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                <select className ="input-txt" id="select-tasks"  onChange={()=>{PubSub.publish('state', document.getElementById("select-tasks").value);}}>
+                    <option value="All">All Tasks</option>
+                    <option value="Today">Today</option>
+                    <option value="Week">This Week</option>
+                    <option value="Month">This Month</option>
+                    <option value="Old">Old Tasks</option>
+                </select>
             </nav>
           )
 }

@@ -87,7 +87,7 @@
     outline: none;
     color:  rgba(44,126,180);
     transition-property: border-bottom;
-    transition-duration: 1s;
+    transition-duration: 0.5s;
     transition-timing-function: ease-in-out;
 }
 .input-txt:focus
@@ -97,7 +97,7 @@
 .input-txt::placeholder
 {
     transition-property: color;
-    transition-duration: 1s;
+    transition-duration: 0.5s;
     transition-timing-function: ease-in-out;
 }
 .input-txt:focus::placeholder
@@ -106,7 +106,7 @@
 }
 .link
 {   transition-property: color;
-    transition-duration: 1s;
+    transition-duration: 0.5s;
     transition-timing-function: ease-in-out;
     color: black;
 }
@@ -124,7 +124,7 @@
     padding: 6px 12px 6px 12px;
     width: 100%;
     transition-property: border;
-    transition-duration: 1s;
+    transition-duration: 0.5s;
     transition-timing-function: ease-in-out;
 }
 .btn-task:hover
@@ -147,5 +147,23 @@
 .size-pwd
 {
     width: 40%;;
+}
+/*Options Tasks*/
+.icon-option
+{
+    fill: lightgrey;
+    transition-property: fill;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+.icon-option:hover
+{
+    fill: rgba(44,126,180);
+    cursor: pointer;
+}
+.icon-option:active 
+{
+    width: 1.5em;
+    height: 1.5em;
 }
 
