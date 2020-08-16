@@ -3,7 +3,6 @@ import OptionsTasks from './optionsTask'
 import Axios from 'axios'
 import PubSub from 'pubsub-js'
 import 'react-datepicker/dist/react-datepicker.css'
-import { SplitButton } from 'react-bootstrap'
 
 
 export default function PanelTask(props) 
@@ -12,13 +11,13 @@ export default function PanelTask(props)
     let showList
     let tasks = []
     let order = []
+    let splitText
     let count = 1
 
     const [task, setTasks] = useState("Initial")
-    console.log(task)
 
     const mySubscriber = (msg, data) => {
-
+        console.log("Actualizando estado my suscriber ")
         setTasks(data)
     };
 
@@ -48,15 +47,17 @@ export default function PanelTask(props)
                     count++
                     getTasks()
                 }
-                else 
-                {
+                else
+                {   
                     orderDate();
                 }
 
             }).catch((error) => {
                 console.log(error)
             });
+
     }
+
     const compareDate = (day) =>
     {
         let dateData = moment(day.date).fromNow()
@@ -76,6 +77,11 @@ export default function PanelTask(props)
         }
 
         return data == filter ||  moment().isSame(day.date, 'day')
+    }
+
+    const compareText =(txt)=>
+    {
+        return (txt.content.toLowerCase()).includes(splitText.toLowerCase())
     }
 
     const orderDate = () => 
@@ -100,6 +106,8 @@ export default function PanelTask(props)
                 (a, b) => moment(b.date).format('YYYYMMDD') - moment(a.date).format('YYYYMMDD')
             )
         }
+
+        splitText = document.getElementById("input-search").value
 
         order = order.filter(compareDate)  
 
@@ -126,10 +134,13 @@ export default function PanelTask(props)
                 break;
         }
 
+        order = order.filter(compareText)
+
         setTasks(order)
     }
 
-    const printTask = () => {
+    const printTask =()=> 
+    {
         let html = []
         let key = 0
 
@@ -148,10 +159,10 @@ export default function PanelTask(props)
                 </div>
             )
         }
-
-        return html
+        
+        showList = html
     }
-
+    
     switch (task) 
     {
        
@@ -180,12 +191,12 @@ export default function PanelTask(props)
             break;
 
         default:
-            showList = printTask()
+            printTask()
             break;
     }
 
     return (
-
+        
         <div id="tasks" className="border bg-light p-1 ">
             <div className="row m-0">
                 {showList}

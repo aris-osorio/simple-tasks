@@ -1,7 +1,5 @@
 import React from 'react'
 import PubSub from 'pubsub-js'
-import Axios from 'axios'
-import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 

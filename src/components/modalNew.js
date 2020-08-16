@@ -61,7 +61,8 @@ export default function ModalNew()
                 
         });
         console.log(content.value+" "+startDate)
-
+        
+        setStartDate(new Date())
         closeModal();
   }
 
