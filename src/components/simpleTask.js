@@ -1,9 +1,12 @@
 import React from 'react'
 import Navbar from './navBar'
 import NewTask from './newTask'
+import ModalDelete from './modalDelete'
+import ModalEdit from './modalEdit'
 import PanelTask from './panelTask'
-import '../App.css'
 import Footer from './footer'
+import '../App.css'
+
 
 export default function SimpleTask()
 {   
@@ -13,6 +16,8 @@ export default function SimpleTask()
             <div>
                 <Navbar />
                 <NewTask />
+                <ModalDelete />
+                <ModalEdit />
                 <PanelTask />
                 <Footer />
             </div>
