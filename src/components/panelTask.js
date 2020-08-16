@@ -3,6 +3,7 @@ import OptionsTasks from './optionsTask'
 import Axios from 'axios'
 import PubSub from 'pubsub-js'
 import 'react-datepicker/dist/react-datepicker.css'
+import { SplitButton } from 'react-bootstrap'
 
 
 export default function PanelTask(props) 
@@ -14,9 +15,10 @@ export default function PanelTask(props)
     let count = 1
 
     const [task, setTasks] = useState("Initial")
+    console.log(task)
 
     const mySubscriber = (msg, data) => {
-        console.log(msg)
+
         setTasks(data)
     };
 
@@ -55,6 +57,26 @@ export default function PanelTask(props)
                 console.log(error)
             });
     }
+    const compareDate = (day) =>
+    {
+        let dateData = moment(day.date).fromNow()
+        let dateSplit = dateData.split(" ")
+        let data 
+        let filter 
+
+        if(task != "Old")
+        {
+            data = dateSplit[0]
+            filter = "in"
+        }
+        else
+        {
+            data = dateSplit[2]
+            filter = "ago"
+        }
+
+        return data == filter ||  moment().isSame(day.date, 'day')
+    }
 
     const orderDate = () => 
     {
@@ -70,38 +92,40 @@ export default function PanelTask(props)
         {
             order = order.sort(
                 (a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD')
-            )                               
-                                
+            )                              
         }
-        
+        else
+        {
+            order = order.sort(
+                (a, b) => moment(b.date).format('YYYYMMDD') - moment(a.date).format('YYYYMMDD')
+            )
+        }
+
+        order = order.filter(compareDate)  
+
         switch (task) 
         {
-            
             case "Today":
                 let today = moment();
                 order = order.filter(element => today.isSame(element.date, 'day'))
-                setTasks(order);
                 break;
 
             case "Week":
                 let week = moment();
                 order = order.filter(element => week.isSame(element.date, 'week'))
-                setTasks(order);
                 break;
 
             case "Month":
                 let month = moment();
                 order = order.filter(element => month.isSame(element.date, 'month'))
-                setTasks(order);
                 break;
 
             case "Old":
-                order = order.sort(
-                    (a, b) => moment(b.date).format('YYYYMMDD') - moment(a.date).format('YYYYMMDD')
-                )
+                let Old = moment();
+                order = order.filter(element => (false) == Old.isSame(element.date, 'day'))   
                 break;
-
         }
+
         setTasks(order)
     }
 
@@ -132,7 +156,7 @@ export default function PanelTask(props)
     {
        
         case "Initial":
-            showList = (<h1>no hay nada master</h1>)
+            showList = (<h3>Loading tasks...</h3>)
             break;
 
         case "All":
@@ -163,7 +187,7 @@ export default function PanelTask(props)
     return (
 
         <div id="tasks" className="border bg-light p-1 ">
-            <div className="row">
+            <div className="row m-0">
                 {showList}
             </div>
         </div>
