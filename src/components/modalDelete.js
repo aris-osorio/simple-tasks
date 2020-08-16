@@ -22,10 +22,10 @@ export default function ModalDelete()
 {
 
   const [modalIsOpen,setIsOpen] = useState([false,""]);
-  const token = PubSub.subscribe('Modal-Delete', openModal);
   
   function openModal(msg, data) 
   {
+    console.log("Modal delete ok")
     setIsOpen([true, data]);
   }
  
@@ -36,7 +36,7 @@ export default function ModalDelete()
 
   useEffect(() => {
 
-    
+    var token = PubSub.subscribe('Modal-Delete', openModal);
 
   }, [])
 
@@ -69,12 +69,18 @@ export default function ModalDelete()
           style={customStyles}
           contentLabel="Example Modal"
         >
- 
-          <h2>Delete Task</h2>
-          <p>Are you sure to delete this task?</p>
-
-          <button onClick={deleteTask}>Yes</button>
-          <button onClick={closeModal}>No</button>
+            <div className="p-3">
+                <div className="form-group">
+                    <h2 className="color-blue-1">Delete Task</h2>
+                </div>
+                <div className="form-group">
+                    <p className="color-blue-1">Are you sure to delete this task?</p>
+                </div>
+                <div className="form-group d-flex">
+                    <button className="btn-task" onClick={deleteTask}>Yes</button>
+                    <button className="btn-task" onClick={closeModal}>Cancel</button>
+                </div>
+            </div>
         </Modal>
       </div>
     );

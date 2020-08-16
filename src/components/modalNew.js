@@ -19,74 +19,71 @@ const customStyles = {
  
 
 Modal.setAppElement('#root') 
-export default function ModalEdit()
+export default function ModalNew()
 {
-  let content
+  let content 
   const [startDate, setStartDate] = useState(new Date());
-  const [modalIsOpen,setIsOpen] = useState([false,["","",""]]);
+  const [modalIsOpen,setIsOpen] = useState(false);
   
   function openModal(msg, data) 
   {
-    console.log("Modal edit ok")
-    setStartDate(new Date(data[1]))
-    setIsOpen([true, data]);
+    console.log("Modal New OK")
+    setIsOpen(true);
   }
  
   function closeModal()
   {
-    setIsOpen([false,["","",""]]);
+    setIsOpen(false);
   }
 
   useEffect(() => {
 
-    var token1 = PubSub.subscribe('Modal-Edit', openModal);
+    var token = PubSub.subscribe('Modal-New', openModal);
 
   }, [])
 
-  const editTask=()=>
+  const addTask=()=>
   {
-        Axios.put(`https://academlo-todolist.herokuapp.com/tasks/`+modalIsOpen[1][0], 
-        {   
-            
-                content: content.value, 
-                date: startDate,
-            
-
-        }).then(res =>
+        Axios.post(`https://academlo-todolist.herokuapp.com/tasks`, 
         {
-            console.log(res)
-            toast.success('Tarea guardada con exito')
-            PubSub.publish('state', document.getElementById("select-tasks").value)        
-            
-        }).catch((error)=>
-        {   
-            toast.error('Hubo un error al Editar la tarea')
-            console.log(error)
+            content: content.value, 
+            date: startDate,
+
+        }).then(res => 
+            {
+                console.log(res.data);
+                toast.success('Tarea Agregada con exito')
+                PubSub.publish('state', document.getElementById("select-tasks").value)
+
+            }).catch((error) => {
+                console.log(error)
+                toast.error('Error al agregar tarea')
+                
         });
-        console.log(modalIsOpen[1][0] +" "+content.value+ " " +startDate)
+        console.log(content.value+" "+startDate)
+
         closeModal();
- }
+  }
 
  
     return (
       <div>
         <Modal
-          isOpen={modalIsOpen[0]}
+          isOpen={modalIsOpen}
           onRequestClose={closeModal}
           style={customStyles}
           contentLabel="Example Modal"
         >
-
-          <div className="p-3">
+            <div className="p-3">
                <div className="form-group">
-                   <h2 className="color-blue-1">Edit task</h2>
+                   <h2 className="color-blue-1">Add new task</h2>
                </div>   
             </div>    
             <div className="p-3">  
                 <div className="form-group">
                     <label htmlFor="Inputcontent1" className="color-blue-1">Content</label>
                     <br></br>
-                    <input type="text" className="input-txt" ref={txt => content = txt} id="Inputcontent1"   placeholder={modalIsOpen[1][2]}></input>
+                    <input type="text" className="input-txt" ref={txt => content = txt} id="Inputcontent1"  placeholder="Put your tasks here"></input>
                 </div>
                 <div className="form-group">
                         <label htmlFor="Inputdate1" className="color-blue-1">Date</label>
@@ -94,7 +91,7 @@ export default function ModalEdit()
                         <DatePicker className="input-txt" id="Imputdate1" selected={startDate} onChange={date => setStartDate(date)} />
                 </div>
                 <div className="form-group d-flex">
-                    <button className="btn-task" onClick={editTask}>Save Task</button>
+                    <button className="btn-task" onClick={addTask}>Save task</button>
                     <button className="btn-task" onClick={closeModal}>Cancel</button>
                 </div>
              </div>
@@ -102,3 +99,4 @@ export default function ModalEdit()
       </div>
     );
 }
+ 

@@ -6,6 +6,9 @@ export default function Navbar(props)
     return(
             <nav className="navbar navbar-light bg-light">
                 <span className="navbar-brand mb-0 h1">Navbar</span>
+                <span className="navbar-brand mb-0 h1">
+                    <button className="btn-task" onClick={()=>{PubSub.publish('Modal-New', true)}}>New Task</button>
+                </span>
                 <select className ="input-txt" id="select-tasks"  onChange={()=>{PubSub.publish('state', document.getElementById("select-tasks").value);}}>
                     <option value="All">All Tasks</option>
                     <option value="Today">Today</option>
