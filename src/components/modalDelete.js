@@ -33,7 +33,7 @@ export default function ModalDelete() {
 
   useEffect(() => {
 
-    var token = PubSub.subscribe('Modal-Delete', openModal);
+    PubSub.subscribe('Modal-Delete', openModal);
 
   }, [])
 

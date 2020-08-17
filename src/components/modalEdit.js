@@ -38,7 +38,7 @@ export default function ModalEdit() {
 
   useEffect(() => {
 
-    var token1 = PubSub.subscribe('Modal-Edit', openModal);
+    PubSub.subscribe('Modal-Edit', openModal);
 
   }, [])
 

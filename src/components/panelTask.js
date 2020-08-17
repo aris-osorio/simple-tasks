@@ -27,7 +27,7 @@ export default function PanelTask(props) {
 
     useEffect(() => {
 
-        const token = PubSub.subscribe('state', mySubscriber);
+        PubSub.subscribe('state', mySubscriber);
         getTasks();
 
     }, [])

@@ -36,7 +36,7 @@ export default function ModalNew() {
 
   useEffect(() => {
 
-    var token = PubSub.subscribe('Modal-New', openModal);
+    PubSub.subscribe('Modal-New', openModal);
 
   }, [])
 
