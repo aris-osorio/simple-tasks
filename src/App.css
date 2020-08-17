@@ -148,7 +148,33 @@
 {
     width: 40%;;
 }
+/*navbar*/
+.task-position
+{
+    top: -20px;
+}
+#select-tasks:hover
+{
+    cursor: pointer;
+}
+/*panel*/
+.tasks-container
+{
+    transition-property: box-shadow;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+.tasks-container:hover
+{
+    cursor: pointer;
+    box-shadow: 0 0 0 0.05rem rgba(44,126,180);
+}
 /*Options Tasks*/
+.options-tasks
+{
+    top: 18px;
+    left: 185px;
+}
 .icon-option
 {
     fill: lightgrey;
@@ -163,7 +189,25 @@
 }
 .icon-option:active 
 {
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.45em;
+    height: 1.45em;
 }
-
+/*modal*/
+.txt-s-modal
+{
+    font-size: 80px;
+    top: 300px;
+    right: 112px;
+}
+.txt-simple-modal
+{
+    font-size: 40px;
+    top: 390px;
+    right: 65px;
+}
+.txt-task-modal
+{
+    font-size: 40px;
+    top: 430px;
+    right: 81px;
+}

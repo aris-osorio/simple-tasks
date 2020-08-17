@@ -14,6 +14,11 @@ export default function PanelTask(props)
     let splitText
     let count = 1
 
+    const divStyle={
+        overflowY: 'auto',
+        height:'330px',
+      };
+
     const [task, setTasks] = useState("Initial")
 
     const mySubscriber = (msg, data) => {
@@ -174,13 +179,17 @@ export default function PanelTask(props)
         for (let j = 0; j < task.length; j++) 
         {
             html.push(
-                <div key={key++} id={task[j]._id} className="col-sm-3">
-                    <div className="card">
+                <div key={key++} id={task[j]._id} className="col-sm-3 p-1">
+                    <div className="card d-flex tasks-container">
                         <div className="card-body">
-                            <h5 className="card-title">{moment(task[j].date).format('MMMM Do YYYY')}</h5>
-                            {task[j].content}
+                            <div className="d-flex">
+                                <h5 className="card-title">{moment(task[j].date).format('MMMM Do YYYY')}</h5>
+                                <span><OptionsTasks id={task[j]._id} date={task[j].date} content={task[j].content}/></span>
+                            </div>
+                            <div>
+                                {task[j].content}
+                            </div>
                         </div>
-                        <OptionsTasks id={task[j]._id} date={task[j].date} content={task[j].content}/>
                     </div>
                 </div>
             )
@@ -223,8 +232,8 @@ export default function PanelTask(props)
 
     return (
         
-        <div id="tasks" className="border bg-light p-1 ">
-            <div className="row m-0">
+        <div id="tasks" className="pt-3 pl-3 pr-3">
+            <div className="row m-0" style={divStyle}>
                 {showList}
             </div>
         </div>

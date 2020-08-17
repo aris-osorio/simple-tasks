@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'
  
 const customStyles = {
   content : {
+    height                : '600px',
     top                   : '50%',
     left                  : '50%',
     right                 : 'auto',
@@ -22,6 +23,7 @@ Modal.setAppElement('#root')
 export default function ModalEdit()
 {
   let content
+  let placeHolder
   const [startDate, setStartDate] = useState(new Date());
   const [modalIsOpen,setIsOpen] = useState([false,["","",""]]);
   
@@ -67,7 +69,12 @@ export default function ModalEdit()
         closeModal();
  }
 
- 
+    if(modalIsOpen[1][2] != "")
+    {
+      placeHolder = modalIsOpen[1][2].props
+      placeHolder = placeHolder.children[0].props.children + placeHolder.children[1].props.children + placeHolder.children[2].props.children
+    }
+
     return (
       <div>
         <Modal
@@ -78,6 +85,11 @@ export default function ModalEdit()
         >
 
           <div className="p-3">
+               <div className="position-relative">
+                  <p className="font-weight-light position-absolute txt-s-modal color-blue-1">S</p>
+                  <p className="font-weight-light position-absolute txt-simple-modal color-blue-1">SIMPLE</p>
+                  <p className="font-weight-light position-absolute txt-task-modal color-blue-1">TASK</p>
+               </div>
                <div className="form-group">
                    <h2 className="color-blue-1">Edit task</h2>
                </div>   
@@ -86,7 +98,7 @@ export default function ModalEdit()
                 <div className="form-group">
                     <label htmlFor="Inputcontent1" className="color-blue-1">Content</label>
                     <br></br>
-                    <input type="text" className="input-txt" ref={txt => content = txt} id="Inputcontent1"   placeholder={modalIsOpen[1][2]}></input>
+                    <input type="text" className="input-txt" ref={txt => content = txt} id="Inputcontent1"   placeholder={placeHolder}></input>
                 </div>
                 <div className="form-group">
                         <label htmlFor="Inputdate1" className="color-blue-1">Date</label>
@@ -94,8 +106,8 @@ export default function ModalEdit()
                         <DatePicker className="input-txt" id="Imputdate1" selected={startDate} onChange={date => setStartDate(date)} />
                 </div>
                 <div className="form-group d-flex">
-                    <button className="btn-task" onClick={editTask}>Save Task</button>
-                    <button className="btn-task" onClick={closeModal}>Cancel</button>
+                    <button className="btn-task mr-1" onClick={editTask}>Save Task</button>
+                    <button className="btn-task ml-1" onClick={closeModal}>Cancel</button>
                 </div>
              </div>
         </Modal>

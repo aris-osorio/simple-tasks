@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'
  
 const customStyles = {
   content : {
+    height                : '600px',
     top                   : '50%',
     left                  : '50%',
     right                 : 'auto',
@@ -76,6 +77,11 @@ export default function ModalNew()
           contentLabel="Example Modal"
         >
             <div className="p-3">
+                <div className="position-relative">
+                    <p className="font-weight-light position-absolute txt-s-modal color-blue-1">S</p>
+                    <p className="font-weight-light position-absolute txt-simple-modal color-blue-1">SIMPLE</p>
+                    <p className="font-weight-light position-absolute txt-task-modal color-blue-1">TASK</p>
+               </div>
                <div className="form-group">
                    <h2 className="color-blue-1">Add new task</h2>
                </div>   
@@ -92,8 +98,8 @@ export default function ModalNew()
                         <DatePicker className="input-txt" id="Imputdate1" selected={startDate} onChange={date => setStartDate(date)} />
                 </div>
                 <div className="form-group d-flex">
-                    <button className="btn-task" onClick={addTask}>Save task</button>
-                    <button className="btn-task" onClick={closeModal}>Cancel</button>
+                    <button className="btn-task mr-1" onClick={addTask}>Save task</button>
+                    <button className="btn-task ml-1" onClick={closeModal}>Cancel</button>
                 </div>
              </div>
         </Modal>

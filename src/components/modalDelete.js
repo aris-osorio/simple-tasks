@@ -77,8 +77,8 @@ export default function ModalDelete()
                     <p className="color-blue-1">Are you sure to delete this task?</p>
                 </div>
                 <div className="form-group d-flex">
-                    <button className="btn-task" onClick={deleteTask}>Yes</button>
-                    <button className="btn-task" onClick={closeModal}>Cancel</button>
+                    <button className="btn-task mr-1" onClick={deleteTask}>Yes</button>
+                    <button className="btn-task ml-1" onClick={closeModal}>Cancel</button>
                 </div>
             </div>
         </Modal>
