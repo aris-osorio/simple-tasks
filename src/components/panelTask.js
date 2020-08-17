@@ -81,7 +81,33 @@ export default function PanelTask(props)
 
     const compareText =(txt)=>
     {
-        return (txt.content.toLowerCase()).includes(splitText.toLowerCase())
+       
+        let bool = false
+
+        if(txt.content.toLowerCase().includes(splitText.toLowerCase()))
+        {
+            let html = []
+            bool = true
+            
+            let initial = txt.content.substr(0, txt.content.toLowerCase().indexOf(splitText.toLowerCase()))
+             
+            let underline = txt.content.substr(txt.content.toLowerCase().indexOf(splitText.toLowerCase()), splitText.length)  
+        
+            let final = txt.content.substr(txt.content.toLowerCase().indexOf(splitText.toLowerCase()) + splitText.length, txt.content.length)
+            
+            html.push(
+                        <p className="card-text color-blue-1">
+                            <span>{initial}</span>
+                            <span style={{backgroundColor: "#2c7eb4", color: "white"}}>{underline}</span>
+                            <span>{final}</span>
+                        </p>
+                     )
+
+            txt.content = html[0]
+            console.log(txt.content)
+        }
+
+        return bool
     }
 
     const orderDate = () => 
@@ -152,7 +178,7 @@ export default function PanelTask(props)
                     <div className="card">
                         <div className="card-body">
                             <h5 className="card-title">{moment(task[j].date).format('MMMM Do YYYY')}</h5>
-                            <p className="card-text">{task[j].content}</p>
+                            {task[j].content}
                         </div>
                         <OptionsTasks id={task[j]._id} date={task[j].date} content={task[j].content}/>
                     </div>
