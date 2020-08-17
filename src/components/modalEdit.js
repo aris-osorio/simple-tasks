@@ -25,6 +25,7 @@ export default function ModalEdit() {
   let placeHolder
   const [startDate, setStartDate] = useState(new Date());
   const [modalIsOpen, setIsOpen] = useState([false, ["", "", ""]]);
+  let token
 
   function openModal(msg, data) {
     console.log("Modal edit ok")
@@ -38,9 +39,9 @@ export default function ModalEdit() {
 
   useEffect(() => {
 
-    PubSub.subscribe('Modal-Edit', openModal);
+     token = PubSub.subscribe('Modal-Edit', openModal);
 
-  }, [])
+  }, [token])
 
   const editTask = () => {
     Axios.put(`https://academlo-todolist.herokuapp.com/tasks/` + modalIsOpen[1][0],

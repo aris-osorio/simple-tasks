@@ -7,15 +7,16 @@ import './App.css';
 export default function App() {
   const [window, setWindows] = useState("Loading");
   let showWindow;
-
+  let token
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setWindows("Principal")
     }, 2000);
-
+    
     return () => clearTimeout(timer);
 
-  }, [])
+  }, [token])
 
   const changeWindows = (state) => {
     setWindows(state)

@@ -21,6 +21,7 @@ Modal.setAppElement('#root')
 export default function ModalDelete() {
 
   const [modalIsOpen, setIsOpen] = useState([false, ""]);
+  let token
 
   function openModal(msg, data) {
     console.log("Modal delete ok")
@@ -33,9 +34,9 @@ export default function ModalDelete() {
 
   useEffect(() => {
 
-    PubSub.subscribe('Modal-Delete', openModal);
+      token = PubSub.subscribe('Modal-Delete', openModal);
 
-  }, [])
+  }, [token])
 
   const deleteTask = () => {
     Axios.delete(`https://academlo-todolist.herokuapp.com/tasks/` + modalIsOpen[1],
