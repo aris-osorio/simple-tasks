@@ -5,26 +5,25 @@ import 'react-toastify/dist/ReactToastify.css'
 
 toast.configure();
 
-export default function Login(props) 
-{
+export default function Login(props) {
     let email = ""
     let password = ""
 
     const loginCheck = () => {
-            Axios.post(`https://academlo-todolist.herokuapp.com/login`,
+        Axios.post(`https://academlo-todolist.herokuapp.com/login`,
             {
                 email: email.value,
                 password: password.value
 
             }).then(res => {
                 console.log(res);
-                toast.success('inicio de sesion correcto : bienvenido')
+                toast.info('Welcome to Simple Task')
                 props.windows("SimpleTask")
 
             }).catch((error) => {
 
                 console.log(error)
-                toast.error('error datos invalidos')
+                toast.error('Failed to login')
 
             });
     }
@@ -50,12 +49,12 @@ export default function Login(props)
             </div>
             <div className="text-center">
                 <button className="btn-task" onClick={loginCheck}>Login</button>
-            </div> 
+            </div>
             <br></br>
             <br></br>
             <br></br>
             <br></br>
             <br></br>
-        </div>     
+        </div>
     )
 }

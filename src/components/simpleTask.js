@@ -7,18 +7,17 @@ import PanelTask from './panelTask'
 import Footer from './footer'
 import '../App.css'
 
-export default function SimpleTask()
-{   
+export default function SimpleTask() {
 
     document.title = 'Simple task';
-    return(
-            <div>
-                <Navbar />
-                <ModalNew />
-                <ModalDelete />
-                <ModalEdit />
-                <PanelTask />
-                <Footer />
-            </div>
-          )   
+    return (
+        <div>
+            <Navbar />
+            <ModalNew />
+            <ModalDelete />
+            <ModalEdit />
+            <PanelTask />
+            <Footer />
+        </div>
+    )
 }

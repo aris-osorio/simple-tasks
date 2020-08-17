@@ -1,60 +1,54 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Loading from './components/loading'
 import Principal from './components/principal'
 import SimpleTask from './components/simpleTask'
 import './App.css';
 
-export default function App()
-{
+export default function App() {
   const [window, setWindows] = useState("Loading");
   let showWindow;
 
-  useEffect(() => 
-  {
+  useEffect(() => {
     const timer = setTimeout(() => {
       setWindows("Principal")
-  }, 2000);
+    }, 2000);
 
     return () => clearTimeout(timer);
 
   }, [])
 
-  const changeWindows =(state)=>
-  {
-      setWindows(state)
+  const changeWindows = (state) => {
+    setWindows(state)
   }
 
-  if(window ==="Loading")
-  {
+  if (window === "Loading") {
     showWindow = (
-                    <div className="vh-100 d-flex justify-content-center align-items-center">
-                      <Loading />
-                    </div>
-                 )
+      <div className="vh-100 d-flex justify-content-center align-items-center">
+        <Loading />
+      </div>
+    )
   }
-  else if(window ==="Principal")
-  {
+  else if (window === "Principal") {
     showWindow = (
-                    <div className="vh-100 bg-principal">
-                      <div className="vh-100 d-flex justify-content-center align-items-center bg-opacity">
-                        <Principal windows = {changeWindows} />
-                      </div>
-                    </div>  
-                 )
+      <div className="vh-100 bg-principal">
+        <div className="vh-100 d-flex justify-content-center align-items-center bg-opacity">
+          <Principal windows={changeWindows} />
+        </div>
+      </div>
+    )
   }
-  else if(window ==="SimpleTask")
-  {
+  else if (window === "SimpleTask") {
     showWindow = (
-                    <SimpleTask windows = {changeWindows}/>
-                 )
+      <SimpleTask windows={changeWindows} />
+    )
   }
-  
+
   return (
     <div>
       {showWindow}
-    </div>  
+    </div>
   )
-   
+
 }
 
 
