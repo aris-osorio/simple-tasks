@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import DatePicker from 'react-datepicker'
 import Modal from 'react-modal';
 import PubSub from 'pubsub-js'
@@ -25,7 +25,8 @@ export default function ModalEdit() {
   let placeHolder
   const [startDate, setStartDate] = useState(new Date());
   const [modalIsOpen, setIsOpen] = useState([false, ["", "", ""]]);
-  let token
+  const token = useRef("")
+  
 
   function openModal(msg, data) {
     console.log("Modal edit ok")
@@ -64,7 +65,7 @@ export default function ModalEdit() {
     closeModal();
   }
 
-  if (modalIsOpen[1][2] != "") {
+  if (modalIsOpen[1][2] !== "") {
     placeHolder = modalIsOpen[1][2].props
     placeHolder = placeHolder.children[0].props.children + placeHolder.children[1].props.children + placeHolder.children[2].props.children
   }

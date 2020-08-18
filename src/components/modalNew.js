@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import DatePicker from 'react-datepicker'
 import Modal from 'react-modal';
 import PubSub from 'pubsub-js'
@@ -22,7 +22,8 @@ toast.configure();
 Modal.setAppElement('#root')
 export default function ModalNew() {
   let content
-  let token
+  const token = useRef("")
+  
   const [startDate, setStartDate] = useState(new Date());
   const [modalIsOpen, setIsOpen] = useState(false);
 

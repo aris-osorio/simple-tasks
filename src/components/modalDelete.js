@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Modal from 'react-modal';
 import PubSub from 'pubsub-js'
 import Axios from 'axios'
@@ -21,7 +21,8 @@ Modal.setAppElement('#root')
 export default function ModalDelete() {
 
   const [modalIsOpen, setIsOpen] = useState([false, ""]);
-  let token
+  const token = useRef("")
+ 
 
   function openModal(msg, data) {
     console.log("Modal delete ok")
