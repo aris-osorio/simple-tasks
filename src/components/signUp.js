@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Axios from 'axios'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -64,7 +64,7 @@ export default function SignUp(props) {
                 <label htmlFor="InputPassword1" className="color-blue-1">Password</label>
                 <br></br>
                 <input type="password" className="input-txt" ref={txt => password = txt} id="InputPassword1" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"></input>
-                <small id="singUpHelp" className="form-text color-blue-1">Already have account?&nbsp;<a className="link" href='#' onClick={() => props.element("Login")}>Login</a></small>
+                <small id="singUpHelp" className="form-text color-blue-1">Already have account?&nbsp;<span><p className="link" onClick={() => props.element("Login")}>Login</p></span></small>
             </div>
             <div className="d-flex">
                 <button className="btn-task ml-1" onClick={dataRegistrer}>Sing up</button>

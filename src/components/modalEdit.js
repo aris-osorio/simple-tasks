@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import DatePicker from 'react-datepicker'
 import Modal from 'react-modal';
 import PubSub from 'pubsub-js'
@@ -25,6 +25,8 @@ export default function ModalEdit() {
   let placeHolder
   const [startDate, setStartDate] = useState(new Date());
   const [modalIsOpen, setIsOpen] = useState([false, ["", "", ""]]);
+  const token = PubSub.subscribe('Modal-Edit', openModal);
+  console.log(token)
 
   function openModal(msg, data) {
     console.log("Modal edit ok")
@@ -35,12 +37,6 @@ export default function ModalEdit() {
   function closeModal() {
     setIsOpen([false, ["", "", ""]]);
   }
-
-  useEffect(() => {
-
-    var token1 = PubSub.subscribe('Modal-Edit', openModal);
-
-  }, [])
 
   const editTask = () => {
     Axios.put(`https://academlo-todolist.herokuapp.com/tasks/` + modalIsOpen[1][0],
@@ -63,7 +59,7 @@ export default function ModalEdit() {
     closeModal();
   }
 
-  if (modalIsOpen[1][2] != "") {
+  if (modalIsOpen[1][2] !== "") {
     placeHolder = modalIsOpen[1][2].props
     placeHolder = placeHolder.children[0].props.children + placeHolder.children[1].props.children + placeHolder.children[2].props.children
   }

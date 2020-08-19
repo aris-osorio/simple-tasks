@@ -22,6 +22,8 @@ toast.configure();
 Modal.setAppElement('#root')
 export default function ModalNew() {
   let content
+  const token = PubSub.subscribe('Modal-New', openModal);
+  console.log(token)
   const [startDate, setStartDate] = useState(new Date());
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -36,9 +38,9 @@ export default function ModalNew() {
 
   useEffect(() => {
 
-    var token = PubSub.subscribe('Modal-New', openModal);
-
-  }, [])
+   
+    console.log(token)
+  }, [token])
 
   const addTask = () => {
     Axios.post(`https://academlo-todolist.herokuapp.com/tasks`,

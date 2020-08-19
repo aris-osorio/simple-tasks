@@ -45,7 +45,7 @@ export default function Login(props) {
                 <label htmlFor="exampleInputPassword1" className="color-blue-1">Password</label>
                 <br></br>
                 <input type="password" className="input-txt" ref={txt => password = txt} id="exampleInputPassword1" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"></input>
-                <small id="singUpHelp" className="form-text color-blue-1">Not a member?&nbsp;<a className="link" href='#' onClick={() => props.element("SignUp")}>Sign Up now</a></small>
+                <small id="singUpHelp" className="form-text color-blue-1">Not a member?&nbsp;<span><p className="link" href='#' onClick={() => props.element("SignUp")}>Sign Up now</p></span></small>
             </div>
             <div className="text-center">
                 <button className="btn-task" onClick={loginCheck}>Login</button>

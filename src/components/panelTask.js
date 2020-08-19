@@ -13,6 +13,14 @@ export default function PanelTask(props) {
     let splitText
     let count = 1
 
+    const mySubscriber = (msg, data) => {
+        console.log("Actualizando estado my suscriber ")
+        setTasks(data)
+    };
+
+    const token = PubSub.subscribe('state', mySubscriber);
+    console.log(token)
+
     const divStyle = {
         overflowY: 'auto',
         height: '330px',
@@ -20,14 +28,10 @@ export default function PanelTask(props) {
 
     const [task, setTasks] = useState("Initial")
 
-    const mySubscriber = (msg, data) => {
-        console.log("Actualizando estado my suscriber ")
-        setTasks(data)
-    };
+   
 
     useEffect(() => {
 
-        const token = PubSub.subscribe('state', mySubscriber);
         getTasks();
 
     }, [])
@@ -65,16 +69,16 @@ export default function PanelTask(props) {
         let data
         let filter
 
-        if (task != "Old") {
+        if (task !== "Old") {
             data = dateSplit[0]
-            filter = "in"
+            filter ="in"
         }
         else {
             data = dateSplit[2]
             filter = "ago"
         }
 
-        return data == filter || moment().isSame(day.date, 'day')
+        return data === filter || moment().isSame(day.date, 'day')
     }
 
     const compareText = (txt) => {
@@ -113,7 +117,7 @@ export default function PanelTask(props) {
             }
         }
 
-        if (task != "Old") {
+        if (task !== "Old") {
             order = order.sort(
                 (a, b) => moment(a.date).format('YYYYMMDD') - moment(b.date).format('YYYYMMDD')
             )
@@ -146,7 +150,10 @@ export default function PanelTask(props) {
 
             case "Old":
                 let Old = moment();
-                order = order.filter(element => (false) == Old.isSame(element.date, 'day'))
+                order = order.filter(element => (false) === Old.isSame(element.date, 'day'))
+                break;
+
+            default:
                 break;
         }
 
