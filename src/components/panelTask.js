@@ -28,13 +28,7 @@ export default function PanelTask(props) {
 
     const [task, setTasks] = useState("Initial")
 
-   
-
-    useEffect(() => {
-
-        getTasks();
-
-    }, [])
+    
 
     const getTasks = () => {
         Axios.get(`https://academlo-todolist.herokuapp.com/tasks`,
@@ -62,7 +56,7 @@ export default function PanelTask(props) {
             });
 
     }
-
+    useEffect(getTasks, [])
     const compareDate = (day) => {
         let dateData = moment(day.date).fromNow()
         let dateSplit = dateData.split(" ")
