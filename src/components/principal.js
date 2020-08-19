@@ -22,7 +22,7 @@ export default function Principal(props) {
     }
 
     return (
-        <div>
+        <div className="principal-container">
             {showComponent}
         </div>
     )

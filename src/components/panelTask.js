@@ -12,7 +12,14 @@ export default function PanelTask(props) {
     let order = []
     let splitText
     let count = 1
-    let token
+
+    const mySubscriber = (msg, data) => {
+        console.log("Actualizando estado my suscriber ")
+        setTasks(data)
+    };
+
+    const token = PubSub.subscribe('state', mySubscriber);
+    console.log(token)
 
     const divStyle = {
         overflowY: 'auto',
@@ -21,17 +28,7 @@ export default function PanelTask(props) {
 
     const [task, setTasks] = useState("Initial")
 
-    const mySubscriber = (msg, data) => {
-        console.log("Actualizando estado my suscriber ")
-        setTasks(data)
-    };
-
-    useEffect(() => {
-
-        token = PubSub.subscribe('state', mySubscriber);
-        getTasks();
-
-    }, [token])
+    
 
     const getTasks = () => {
         Axios.get(`https://academlo-todolist.herokuapp.com/tasks`,
@@ -59,7 +56,7 @@ export default function PanelTask(props) {
             });
 
     }
-
+    useEffect(getTasks, [])
     const compareDate = (day) => {
         let dateData = moment(day.date).fromNow()
         let dateSplit = dateData.split(" ")
@@ -68,7 +65,7 @@ export default function PanelTask(props) {
 
         if (task !== "Old") {
             data = dateSplit[0]
-            filter = "in"
+            filter ="in"
         }
         else {
             data = dateSplit[2]
@@ -149,8 +146,8 @@ export default function PanelTask(props) {
                 let Old = moment();
                 order = order.filter(element => (false) === Old.isSame(element.date, 'day'))
                 break;
-            
-                default:
+
+            default:
                 break;
         }
 

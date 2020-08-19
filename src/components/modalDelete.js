@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import PubSub from 'pubsub-js'
 import Axios from 'axios'
@@ -21,9 +21,9 @@ Modal.setAppElement('#root')
 export default function ModalDelete() {
 
   const [modalIsOpen, setIsOpen] = useState([false, ""]);
-  const token = useRef("")
- 
-
+  const token = PubSub.subscribe('Modal-Delete', openModal);
+  console.log(token)
+  
   function openModal(msg, data) {
     console.log("Modal delete ok")
     setIsOpen([true, data]);
@@ -32,12 +32,6 @@ export default function ModalDelete() {
   function closeModal() {
     setIsOpen([false, ""]);
   }
-
-  useEffect(() => {
-
-      token = PubSub.subscribe('Modal-Delete', openModal);
-
-  }, [token])
 
   const deleteTask = () => {
     Axios.delete(`https://academlo-todolist.herokuapp.com/tasks/` + modalIsOpen[1],
